@@ -73,3 +73,4 @@ fi
 # Artemis Shell specific aliases/commands/functions
 
 ## pip: Alias for pip3 on Linux systems
+alias pip="pip3"
