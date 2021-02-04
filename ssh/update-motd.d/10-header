@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #  Header - MOTD headings for non-login shells.
-#
+
 #  Original author: Dustin Kirkland <kirkland@canonical.com>
 #  Author: Dannington <git@bean.codes>
 #  Licence: GNU GPL v2 (utilises version 3)

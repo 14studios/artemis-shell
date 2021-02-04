@@ -1,14 +1,15 @@
 #!/bin/sh
 
-#  MOTD News - A dynamic MOTD news component for non-login shells (from motd.artemis.org.uk/50)
+#  Help Text - Second component of the MOTD, providing website and dashboard information for Artemis Shell (from motd.artemis.org.uk/20)
+
 #  Author: Dannington <git@bean.codes>
 #  Licence: GNU GPL v2 (utilises version 3)
 #  Uses parts of code from other update-motd.d files, (C) Dustin Kirkland <kirkland@canonical.com>
 
 # Set variables for the MOTD
-URL="https://motd.artemis.org.uk/50"
+URL="https://motd.artemis.org.uk/20"
 WAIT=5
-CACHE="/var/cache/motd-news.d/50"
+CACHE="/var/cache/motd-news.d/20"
 [ "$1" = "--force" ] && FORCED=1
 
 # Safely print the MOTD

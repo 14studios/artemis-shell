@@ -1,4 +1,11 @@
-# (c) Zygmunt Krynicki, modified by Artemis for use in internal systems
+#!/usr/bin/python3
+
+#  Command Not Found - A core package used by Artemis Shell and Ubuntu to find missing commands
+
+#  Original author: Zygmunt Krynicki <me@zygoon.pl>
+#  Author: Dannington <git@bean.codes>
+#  Licence: GNU GPL v1 (utilises version 3)
+
 from __future__ import (
     print_function,
     absolute_import,
