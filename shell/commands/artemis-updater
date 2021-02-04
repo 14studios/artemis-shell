@@ -1,6 +1,8 @@
-#!/bin/sh
-UPDATERTEMPDIR=$(mktemp)
+#!/bin/bash
 
-curl https://raw.githubusercontent.com/14studios/artemis-shell/master/setup/deploy.sh --output "$(UPDATERTEMPDIR)/deploy.sh"
-chmod +x $(UPDATERTEMPDIR)/deploy.sh
-$(UPDATERTEMPDIR)/deploy.sh
+curl https://raw.githubusercontent.com/14studios/artemis-shell/master/setup/deploy.sh --output "/tmp/deploy.sh"
+chmod +x /tmp/deploy.sh
+/tmp/deploy.sh
+sleep 2
+rm -rf /tmp/deploy.sh
+exit 0

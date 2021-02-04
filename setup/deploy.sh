@@ -1,5 +1,5 @@
 WHICHID=$(ls /usr/bin/ | grep which)
-VERSION="1.1.0"
+VERSION="1.1.0-production"
 which awk > /dev/null
 AWKID=$?
 which curl > /dev/null
