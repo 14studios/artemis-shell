@@ -51,6 +51,7 @@ then
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/update-motd.d/20-help-text --output /etc/update-motd.d/20-help-text
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/update-motd.d/50-motd-news --output /etc/update-motd.d/50-motd-news
     /usr/bin/dos2unix /etc/update-motd.d/* > /dev/null
+    /usr/bin/env chmod +x /etc/update-motd.d/*
     /usr/bin/env rm -rf /etc/banner
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/banner --output /etc/banner
     /usr/bin/dos2unix /etc/banner > /dev/null
