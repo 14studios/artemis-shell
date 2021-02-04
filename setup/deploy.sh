@@ -13,12 +13,12 @@ if [ $OSID != '"Ubuntu"' ]; then
     exit 1
 fi
 
-if [ $CURLID != "/usr/bin/curl"]; then
+if [ $CURLID != "/usr/bin/curl" ]; then
     echo "Install curl to /usr/bin/curl, then try again."
     exit 1
 fi
 
-if [ $CURLID != "/usr/bin/awk"]; then
+if [ $CURLID != "/usr/bin/awk" ]; then
     echo "Install awk to /usr/bin/awk, then try again."
     exit 1
 fi
