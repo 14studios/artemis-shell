@@ -13,4 +13,4 @@ if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
         DISTRIB_DESCRIPTION=$(lsb_release -s -d)
 fi
 
-printf "Welcome to the Artemis Shell (Based on Ubuntu LTS)"
+printf "Welcome to the Artemis Shell v1.1.0-production (Based on $(lsb_release -s -d))"
