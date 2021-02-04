@@ -1,4 +1,3 @@
-#!/bin/sh
 WHICHID=$(ls /usr/bin/ | grep which)
 VERSION="1.1.0"
 which awk > /dev/null
