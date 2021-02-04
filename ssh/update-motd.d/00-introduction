@@ -17,17 +17,6 @@ safe_print() {
         cat "$1" | head -n 10 | tr -d '\000-\011\013\014\016-\037' | cut -c -80
 }
 
-# Print from cache if systemd hasn't passed --force
-if [ "$FORCED" != "1" ]; then
-        if [ -r $CACHE ]; then
-                echo
-                safe_print $CACHE
-        elif [ "$(id -u)" -eq 0 ]; then
-                : > $CACHE
-        fi
-        exit 0
-fi
-
 # Set variables for temporary dirs
 NEWS=$(mktemp) || exit 1
 ERR=$(mktemp) || exit 1
