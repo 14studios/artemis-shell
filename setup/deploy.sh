@@ -1,6 +1,7 @@
 WHICHID=$(ls /usr/bin/ | grep which)
 AWKID=$(which awk)
 CURLID=$(which curl)
+DOSUNIXID=$(which dos2unix)
 OSID=$(/usr/bin/env awk -F= '/^NAME/{print $2}' /etc/os-release)
 
 if (( $EUID != 0 )); then
@@ -15,6 +16,11 @@ fi
 
 if [ $CURLID != "/usr/bin/curl" ]; then
     echo "Install curl to /usr/bin/curl, then try again."
+    exit 1
+fi
+
+if [ $DOSUNIXID != "/usr/bin/dos2unix" ]; then
+    echo "Install dos2unix to /usr/bin/dos2unix, then try again."
     exit 1
 fi
 
@@ -41,18 +47,25 @@ then
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/update-motd.d/10-header --output /etc/update-motd.d/10-header
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/update-motd.d/20-help-text --output /etc/update-motd.d/20-help-text
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/update-motd.d/50-motd-news --output /etc/update-motd.d/50-motd-news
+    /usr/bin/dos2unix /etc/update-motd.d/*
     /usr/bin/env rm -rf /etc/banner
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/banner --output /etc/banner
+    /usr/bin/dos2unix /etc/banner
     /usr/bin/env rm -rf /etc/profile
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/profile --output /etc/profile
+    /usr/bin/dos2unix /etc/profile
     /usr/bin/env rm -rf /etc/bash.bashrc
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/bash.bashrc --output /etc/bash.bashrc
+    /usr/bin/dos2unix /etc/bash.bashrc
     /usr/bin/env rm -rf /usr/lib/command-not-found
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/command-not-found/usr-lib/command-not-found --output /usr/lib/command-not-found
+    /usr/bin/dos2unix /usr/lib/command-not-found
     /usr/bin/env rm -rf /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/command-not-found/usr-lib/python3-distpkgs/CommandNotFound.py --output /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py
+    /usr/bin/dos2unix /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py
     /usr/bin/env rm -rf /etc/skel/.bashrc
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/skel/.bashrc --output /etc/skel/.bashrc
+    /usr/bin/dos2unix /etc/skel/.bashrc
 else
   exit 0
 fi
@@ -62,9 +75,11 @@ if [[ $prompttwo == "y" || $prompttwo == "Y" || $prompttwo == "yes" || $prompttw
 then
     /usr/bin/env rm -rf /etc/ssh/sshd_config
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/ssh/sshd_config-2fa --output /etc/ssh/sshd_config
+    /usr/bin/dos2unix /etc/ssh/sshd_config
 else
     /usr/bin/env rm -rf /etc/ssh/sshd_config
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/ssh/sshd_config-n2fa --output /etc/ssh/sshd_config
+    /usr/bin/dos2unix /etc/ssh/sshd_config
 fi
 
 read -p "The script has been deployed! Press any key to exit.. "
