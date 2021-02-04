@@ -17,22 +17,22 @@ if [ $OSID != '"Ubuntu"' ]; then
     exit 1
 fi
 
-if [ $CURLID != 0 ]; then
+if (( $CURLID != 0 )); then
     echo "Install curl to /usr/bin/curl, then try again."
     exit 1
 fi
 
-if [ $DOSUNIXID != 0 ]; then
+if (( $DOSUNIXID != 0 )); then
     echo "Install dos2unix to /usr/bin/dos2unix, then try again."
     exit 1
 fi
 
-if [ $AWKID != 0 ]; then
+if (( $AWKID != 0 )); then
     echo "Install awk to /usr/bin/awk, then try again."
     exit 1
 fi
 
-if [ $WHICHID != "which" ]; then
+if (( $WHICHID != "which" )); then
     echo "Install which to /usr/bin/which, then try again."
     exit 1
 fi
