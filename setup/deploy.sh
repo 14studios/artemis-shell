@@ -23,7 +23,7 @@ if [ $CURLID != "/usr/bin/awk" ]; then
     exit 1
 fi
 
-if [ $WHICHID != "which"]; then
+if [ $WHICHID != "which" ]; then
     echo "Install which to /usr/bin/which, then try again."
     exit 1
 fi
