@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#  Header - MOTD headings for non-login shells.
+#
+#  Original author: Dustin Kirkland <kirkland@canonical.com>
+#  Author: Dannington <git@bean.codes>
+#  Licence: GNU GPL v2 (utilises version 3)
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+        # Fall back to using the very slow lsb_release utility
+        DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
+
+printf "Welcome to the Artemis Shell (Based on Ubuntu LTS)"

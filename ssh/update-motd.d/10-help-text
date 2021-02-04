@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#  Help Text - Second component of the MOTD, providing website and dashboard information for Artemis Shell
+#
+#  Original authors: Dustin Kirkland <kirkland@canonical.com>; Brian Murray <brian@canonical.com>
+#  Author: Dannington <git@bean.codes>
+#  Licence: GNU GPL v2 (utilises version 3)
+
+
+printf "\n"
+printf " * Website: artemis.org.uk \n"
+printf " * Dashboard: dash.artemis.org.uk \n"
+printf " * Repository: 14studios/artemis-shell on GitHub"
