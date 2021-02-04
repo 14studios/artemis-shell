@@ -1,7 +1,10 @@
 WHICHID=$(ls /usr/bin/ | grep which)
-AWKID=$(which awk)
-CURLID=$(which curl)
-DOSUNIXID=$(which dos2unix)
+which awk
+AWKID=$?
+which curl
+CURLID=$?
+which dos2unix
+DOSUNIXID=$?
 OSID=$(/usr/bin/env awk -F= '/^NAME/{print $2}' /etc/os-release)
 
 if (( $EUID != 0 )); then
@@ -14,17 +17,17 @@ if [ $OSID != '"Ubuntu"' ]; then
     exit 1
 fi
 
-if [ $CURLID != "/usr/bin/curl" ]; then
+if [ $CURLID != 0 ]; then
     echo "Install curl to /usr/bin/curl, then try again."
     exit 1
 fi
 
-if [ $DOSUNIXID != "/usr/bin/dos2unix" ]; then
+if [ $DOSUNIXID != 0 ]; then
     echo "Install dos2unix to /usr/bin/dos2unix, then try again."
     exit 1
 fi
 
-if [ $AWKID != "/usr/bin/awk" ]; then
+if [ $AWKID != 0 ]; then
     echo "Install awk to /usr/bin/awk, then try again."
     exit 1
 fi
