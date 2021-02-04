@@ -18,7 +18,7 @@ if [ $CURLID != "/usr/bin/curl" ]; then
     exit 1
 fi
 
-if [ $CURLID != "/usr/bin/awk" ]; then
+if [ $AWKID != "/usr/bin/awk" ]; then
     echo "Install awk to /usr/bin/awk, then try again."
     exit 1
 fi
