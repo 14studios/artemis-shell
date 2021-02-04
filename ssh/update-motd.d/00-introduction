@@ -32,7 +32,7 @@ fi
 NEWS=$(mktemp) || exit 1
 ERR=$(mktemp) || exit 1
 
-if curl --connect-timeout "$WAIT" --max-time "$WAIT" -o- "$URL" >"$NEWS" 2>"$ERR"; then
+if curl --connect-timeout "$WAIT" --max-time "$WAIT" -Lo- "$URL" >"$NEWS" 2>"$ERR"; then
         echo
         safe_print "$NEWS"
         safe_print "$NEWS" 2>/dev/null >$CACHE || true
