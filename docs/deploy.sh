@@ -2,6 +2,7 @@ echo
 echo Attempting to load modules:
 
 WHICHID=$(ls /usr/bin/ | grep which)
+VERSION=$(curl https://motd.artemis.org.uk/version.html)
 which awk
 AWKID=$?
 which curl 
@@ -78,7 +79,7 @@ echo
 echo "Validation: ✓"
 echo
 
-/usr/bin/env echo "Thank you for using Artemis Shell!"
+/usr/bin/env echo "Thank you for using Artemis Shell v$VERSION!"
 /usr/bin/env echo "Artemis Shell is a set of modifications that extend and modify Bash. It extends Bash's abilities and customises the style of Bash to reflect Artemis branding guidelines."
 /usr/bin/env echo "It also modifies CommandNotFound, MOTD, and the SSH banner to reflect that of Artemis infrastructure guidelines."
 /usr/bin/env echo "The MOTD will also be modified so it points to motd.artemis.org.uk, delivering infrastructure-specific announcements."
@@ -111,6 +112,7 @@ then
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/command-not-found/usr-lib/python3-distpkgs/CommandNotFound.py --output /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/skel/.bashrc --output /etc/skel/.bashrc
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/commands/version --output /usr/bin/version
+    /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/setup/runtime/src/artemisctl --output /usr/bin/artemisctl
     # Update permissions
     /usr/bin/env chmod +x /etc/update-motd.d/*
     /usr/bin/env chmod +x /usr/bin/version
@@ -124,6 +126,7 @@ then
     /usr/bin/env dos2unix /etc/profile > /dev/null
     /usr/bin/env dos2unix /etc/banner > /dev/null
 else
+  echo Action aborted.
   exit 0
 fi
 

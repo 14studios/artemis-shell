@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+const os = require("os");
+const args = process.argv.slice(2);
+
+if (args.includes("-v") || args.includes("--version")) {
+    require("http").get({ host: "motd.artemis.org.uk", port: 80, path: "/version.html"}, function(res) {
+        res.on("data", function(chunk) {
+            console.log(`Artemis Launchpad Tool (version ${chunk})\n(C) 2021 Dannington <git@bean.codes>, licenced with the GPLv3`)
+        });
+    }).on('error', function(e) {
+        console.log("VERSION NOT FOUND: " + e.message);
+    });
+};
