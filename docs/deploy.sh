@@ -67,12 +67,6 @@ if (( $WHICHID != "which" )); then
     exit 1
 fi
 echo "Package validation: which ✓"
-
-if [ $NODEVER != "v14*" ]; then
-    echo "Please install Node v14 globally from NodeSource on GitHub, then try again."
-    exit 1
-fi
-echo "Node version validation: $NODEVER ✓"
 echo
 
 echo
@@ -116,6 +110,8 @@ then
     # Update permissions
     /usr/bin/env chmod +x /etc/update-motd.d/*
     /usr/bin/env chmod +x /usr/bin/version
+    /usr/bin/env chmod +x /usr/bin/artemisctl
+    /usr/bin/env chmod +x /usr/lib/command-not-found
     # Convert all files from Windows to Unix format
     /usr/bin/env dos2unix /etc/skel/.bashrc > /dev/null
     /usr/bin/env dos2unix /etc/update-motd.d/* > /dev/null
