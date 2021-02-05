@@ -331,7 +331,8 @@ class CommandNotFound(object):
         # check if we have it in a common prefix that may not be in the PATH
         if prefixes and not ignore_installed:
             if len(prefixes) == 1:
-                print(_("The command '%(command)s' is available in '%(place)s'") % {"command": command, "place": os.path.join(prefixes[0], command)}, file=self.output_fd)            else:
+                print(_("The command '%(command)s' is available in '%(place)s'") % {"command": command, "place": os.path.join(prefixes[0], command)}, file=self.output_fd)            
+            else:
                 print(_("The command '%(command)s' is available in the following places") % {"command": command}, file=self.output_fd)
                 for prefix in prefixes:
                     print(" * %s" % os.path.join(prefix, command), file=self.output_fd)
