@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl https://raw.githubusercontent.com/14studios/artemis-shell/master/setup/deploy.sh --output "/tmp/deploy.sh"
+curl https://motd.artemis.org.uk/deploy.sh --output "/tmp/deploy.sh"
 chmod +x /tmp/deploy.sh
 /tmp/deploy.sh
 sleep 2

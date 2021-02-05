@@ -112,7 +112,7 @@ then
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/command-not-found/usr-lib/python3-distpkgs/CommandNotFound.py --output /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/skel/.bashrc --output /etc/skel/.bashrc
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/commands/version --output /usr/bin/version
-    /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/setup/runtime/src/artemisctl --output /usr/bin/artemisctl
+    /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/commands/artemisctl --output /usr/bin/artemisctl
     # Update permissions
     /usr/bin/env chmod +x /etc/update-motd.d/*
     /usr/bin/env chmod +x /usr/bin/version
