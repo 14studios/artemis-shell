@@ -1,42 +1,82 @@
+echo
+echo Attempting to load modules:
+
 WHICHID=$(ls /usr/bin/ | grep which)
-VERSION="1.1.0-production"
-which awk > /dev/null
+which awk
 AWKID=$?
-which curl > /dev/null
+which curl 
 CURLID=$?
-which dos2unix > /dev/null
+which dos2unix
 DOSUNIXID=$?
+which node
+NODEID=$?
+
+echo
+echo Fetching packages...
+echo Fetching OSID...
 OSID=$(/usr/bin/env awk -F= '/^NAME/{print $2}' /etc/os-release)
+
+echo
+echo Initiating validation check...
+echo
 
 if (( $EUID != 0 )); then
     echo "Please run the Artemis Shell deployment script as superuser (NO SUDO!)."
     exit 1
 fi
+echo "Superuser validation: ✓"
 
 if [ $OSID != '"Ubuntu"' ]; then
     echo "This script can only be used with Ubuntu-based systems."
     exit 1
 fi
+echo "Distribution validation: Ubuntu ✓"
+
+echo
+echo Initiating package validation...
+echo
+
+if (( $NODEID != 0 )); then
+    echo "Please install Node (version 14 or higher) GLOBALLY from NodeSource on GitHub, then try again."
+    exit 1
+fi
+echo "Package validation: Node ✓"
+NODEVER=$(/usr/bin/env node -v)
 
 if (( $CURLID != 0 )); then
     echo "Install curl to /usr/bin/curl, then try again."
     exit 1
 fi
+echo "Package validation: curl ✓"
 
 if (( $DOSUNIXID != 0 )); then
     echo "Install dos2unix to /usr/bin/dos2unix, then try again."
     exit 1
 fi
+echo "Package validation: dos2unix ✓"
 
 if (( $AWKID != 0 )); then
     echo "Install awk to /usr/bin/awk, then try again."
     exit 1
 fi
+echo "Package validation: awk ✓"
 
 if (( $WHICHID != "which" )); then
     echo "Install which to /usr/bin/which, then try again."
     exit 1
 fi
+echo "Package validation: which ✓"
+
+if [ $NODEVER != "v14*" ]; then
+    echo "Please install Node v14 globally from NodeSource on GitHub, then try again."
+    exit 1
+fi
+echo "Node version validation: $NODEVER ✓"
+echo
+
+echo
+echo "Validation: ✓"
+echo
 
 /usr/bin/env echo "Thank you for using Artemis Shell!"
 /usr/bin/env echo "Artemis Shell is a set of modifications that extend and modify Bash. It extends Bash's abilities and customises the style of Bash to reflect Artemis branding guidelines."
@@ -48,7 +88,7 @@ then
     # Create artemisctl directory
     mkdir -p /etc/artemisctl
     # Add version to /etc/artemisctl/version
-    echo "$VERSION" > /etc/artemisctl/version
+    /usr/bin/env curl https://motd.artemis.org.uk/version.html --output /etc/artemisctl/version
     # Clean all files
     /usr/bin/env rm -rf /etc/update-motd.d/*
     /usr/bin/env rm -rf /etc/banner
@@ -75,14 +115,14 @@ then
     /usr/bin/env chmod +x /etc/update-motd.d/*
     /usr/bin/env chmod +x /usr/bin/version
     # Convert all files from Windows to Unix format
-    /usr/bin/dos2unix /etc/skel/.bashrc > /dev/null
-    /usr/bin/dos2unix /etc/update-motd.d/* > /dev/null
-    /usr/bin/dos2unix /usr/bin/version > /dev/null
-    /usr/bin/dos2unix /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py > /dev/null
-    /usr/bin/dos2unix /usr/lib/command-not-found > /dev/null
-    /usr/bin/dos2unix /etc/bash.bashrc > /dev/null
-    /usr/bin/dos2unix /etc/profile > /dev/null
-    /usr/bin/dos2unix /etc/banner > /dev/null
+    /usr/bin/env dos2unix /etc/skel/.bashrc > /dev/null
+    /usr/bin/env dos2unix /etc/update-motd.d/* > /dev/null
+    /usr/bin/env dos2unix /usr/bin/version > /dev/null
+    /usr/bin/env dos2unix /usr/lib/python3/dist-packages/CommandNotFound/CommandNotFound.py > /dev/null
+    /usr/bin/env dos2unix /usr/lib/command-not-found > /dev/null
+    /usr/bin/env dos2unix /etc/bash.bashrc > /dev/null
+    /usr/bin/env dos2unix /etc/profile > /dev/null
+    /usr/bin/env dos2unix /etc/banner > /dev/null
 else
   exit 0
 fi
@@ -92,11 +132,11 @@ if [[ $prompttwo == "y" || $prompttwo == "Y" || $prompttwo == "yes" || $prompttw
 then
     /usr/bin/env rm -rf /etc/ssh/sshd_config
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/ssh/sshd_config-2fa --output /etc/ssh/sshd_config
-    /usr/bin/dos2unix /etc/ssh/sshd_config > /dev/null
+    /usr/bin/env dos2unix /etc/ssh/sshd_config > /dev/null
 else
     /usr/bin/env rm -rf /etc/ssh/sshd_config
     /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/ssh/etc/ssh/sshd_config-n2fa --output /etc/ssh/sshd_config
-    /usr/bin/dos2unix /etc/ssh/sshd_config > /dev/null
+    /usr/bin/env dos2unix /etc/ssh/sshd_config > /dev/null
 fi
 
 # Download Artemis Updater
@@ -104,7 +144,7 @@ echo "Installing Artemis Updater.."
 /usr/bin/env rm -rf /usr/bin/artemis-updater
 /usr/bin/env curl https://raw.githubusercontent.com/14studios/artemis-shell/master/shell/commands/artemis-updater --output /usr/bin/artemis-updater
 /usr/bin/env chmod +x /usr/bin/artemis-updater
-/usr/bin/dos2unix /usr/bin/artemis-updater > /dev/null
+/usr/bin/env dos2unix /usr/bin/artemis-updater > /dev/null
 
 read -p "Artemis Shell has been installed. Press any key to exit.. "
 exit 0
