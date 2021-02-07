@@ -133,6 +133,12 @@ then
     /usr/bin/env dos2unix /etc/bash.bashrc > /dev/null
     /usr/bin/env dos2unix /etc/profile > /dev/null
     /usr/bin/env dos2unix /etc/banner > /dev/null
+    # Move other files to respective places
+    for homedirectoryuser in /home/*; do
+        if [ -d "$homedirectoryuser" ]; then
+            cp /etc/skel/.bashrc "$homedirectoryuser/.bashrc"
+        fi
+    done
 else
   echo Action aborted.
   exit 0
