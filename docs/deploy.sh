@@ -73,6 +73,20 @@ echo
 echo "Validation: ✓"
 echo
 
+echo "Checking for Artemis hostname configurations.."
+if [ -f "/etc/artemisctl/host" ]; then
+    echo "Configured hostname: $(cat /etc/artemisctl/host)"
+else
+    read -p "Enter a hostname to be put into /etc/artemisctl/host. " hostnameprompt
+    if [[ $hostnameprompt == "", $hostnameprompt == " " ]]
+    then
+        echo "A hostname wasn't inputted into the field!"
+        exit 1
+    fi
+    echo "$hostnameprompt" > /etc/artemisctl/host
+fi
+echo
+
 /usr/bin/env echo "Thank you for using Artemis Shell v$VERSION!"
 /usr/bin/env echo "Artemis Shell is a set of modifications that extend and modify Bash. It extends Bash's abilities and customises the style of Bash to reflect Artemis branding guidelines."
 /usr/bin/env echo "It also modifies CommandNotFound, MOTD, and the SSH banner to reflect that of Artemis infrastructure guidelines."
@@ -80,8 +94,6 @@ echo
 read -p "Are you sure you want to continue? This may damage your system. [Y/n] " prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
-    # Create artemisctl directory
-    mkdir -p /etc/artemisctl
     # Add version to /etc/artemisctl/version
     /usr/bin/env curl https://motd.artemis.org.uk/version.html --output /etc/artemisctl/version
     # Clean all files

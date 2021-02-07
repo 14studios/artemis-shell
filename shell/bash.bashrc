@@ -63,4 +63,4 @@ fi
 alias pip="pip3"
 
 ## Configure the Bash prompt
-PS1="\e[1;36m\u\e[1;95m@\e[1;32meu1/master\e[0;97m:\e[1;94m\w\e[0m\$ "
+PS1="\e[1;36m\u\e[1;95m@\e[1;32m$(cat /etc/artemisctl/host)\e[0;97m:\e[1;94m\w\e[0m\$ "
