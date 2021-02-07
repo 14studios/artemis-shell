@@ -2,7 +2,7 @@ echo
 echo Attempting to load modules:
 
 WHICHID=$(ls /usr/bin/ | grep which)
-VERSION=$(curl https://motd.artemis.org.uk/version.html)
+VERSION=$(curl -s https://motd.artemis.org.uk/version.html)
 which awk
 AWKID=$?
 which curl 
@@ -139,6 +139,7 @@ then
             cp /etc/skel/.bashrc "$homedirectoryuser/.bashrc"
         fi
     done
+    cp /etc/skel/.bashrc /root/.bashrc
 else
   echo Action aborted.
   exit 0
