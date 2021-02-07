@@ -78,7 +78,7 @@ if [ -f "/etc/artemisctl/host" ]; then
     echo "Configured hostname: $(cat /etc/artemisctl/host)"
 else
     read -p "Enter a hostname to be put into /etc/artemisctl/host. " hostnameprompt
-    if [[ $hostnameprompt == "", $hostnameprompt == " " ]]
+    if [[ $hostnameprompt == "" || $hostnameprompt == " " ]]
     then
         echo "A hostname wasn't inputted into the field!"
         exit 1
