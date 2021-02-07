@@ -74,6 +74,7 @@ echo "Validation: ✓"
 echo
 
 echo "Checking for Artemis hostname configurations.."
+mkdir -p /etc/artemisctl
 if [ -f "/etc/artemisctl/host" ]; then
     echo "Configured hostname: $(cat /etc/artemisctl/host)"
 else
