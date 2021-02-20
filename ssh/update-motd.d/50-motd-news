@@ -13,7 +13,7 @@ CACHE="/var/cache/motd-news.d/50"
 
 # Safely print the MOTD
 safe_print() {
-        cat "$1" | head -n 10 | tr -d '\000-\011\013\014\016-\037' | cut -c -80
+        cat "$1" | head -n 20 | tr -d '\000-\011\013\014\016-\037' | cut -c -80
 }
 
 # Set variables for temporary dirs
